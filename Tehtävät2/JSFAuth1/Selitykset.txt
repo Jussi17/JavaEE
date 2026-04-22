@@ -1,0 +1,12 @@
+- index.xhtml -> View, kirjautumislomake käyttäjälle
+- success.xhtml -> View, näytetään onnistuneen kirjautumisen jälkeen
+- failure.xhtml -> View, näytetään epäonnistuneen kirjautumisen jälkeen
+- LoginBean.java —> Model/Controller, sisältää käyttäjätiedot ja validateUserLogin()-metodin joka tarkistaa tunnukset
+- faces-config.xml —> Määrittelee navigaatiosäännöt: success -> success.xhtml, failure -> failure.xhtml
+- web.xml —> Rekisteröi FacesServletin ja määrittelee että kaikki .xhtml-pyynnöt ohjataan JSF:lle
+- beans.xml —> Aktivoi CDI:n (bean-discovery-mode="all") jotta @Named-annotaatio toimii
+
+
+Miten autentikaatio tapahtuu?
+
+Käyttäjä syöttää tunnukset index.xhtml-lomakkeelle. JSF sitoo arvot LoginBean-olion kenttiin. Kun käyttäjä klikkaa Login-nappia, kutsutaan validateUserLogin()-metodia joka vertaa syötettyjä arvoja kovakoodattuihin tunnuksiin. Metodi palauttaa merkkijonon "success" tai "failure" jonka perusteella faces-config.xml ohjaa käyttäjän oikealle sivulle.
