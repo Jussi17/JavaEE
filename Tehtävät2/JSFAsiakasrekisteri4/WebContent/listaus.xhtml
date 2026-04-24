@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Asiakasrekisteri</title>
+    <h:outputStylesheet library="css" name="tyyli.css"/>
+</h:head>
+<h:body>
+    <h:form id="lomake">
+        <p:growl id="message" showDetail="true"/>
+        <p:tabView id="tabView" dynamic="true" cache="false">
+            <p:tab title="Asiakkaat">
+                <p:dataTable id="asiakasTable" value="#{asiakasBean.asiakkaat}" var="a"
+                             paginator="true" rows="5"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             currentPageReportTemplate="({currentPage} of {totalPages})">
+                    <p:column headerText="Nimi">
+                        <h:outputText value="#{a.nimi}"/>
+                    </p:column>
+                    <p:column headerText="Osoite">
+                        <h:outputText value="#{a.osoite}"/>
+                    </p:column>
+                    <p:column headerText="Puhelin">
+                        <h:outputText value="#{a.puhelin}"/>
+                    </p:column>
+                    <p:column headerText="Email">
+                        <h:outputText value="#{a.email}"/>
+                    </p:column>
+                    <p:column headerText="Salasana">
+                        <h:outputText value="#{a.salasana}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+           <p:tab title="Lisää Asiakas">
+			    <p:panel header="Lisää Asiakas">
+			        <p:panelGrid columns="2" style="border:none" styleClass="lisaysgrid">
+			            <p:outputLabel value="Nimi"/>
+			            <p:inputText value="#{asiakasBean.nimi}"/>
+			            <p:outputLabel value="Osoite"/>
+			            <p:inputText value="#{asiakasBean.osoite}"/>
+			            <p:outputLabel value="Puhelin"/>
+			            <p:inputText value="#{asiakasBean.puhelin}"/>
+			            <p:outputLabel value="Email"/>
+			            <p:inputText value="#{asiakasBean.email}"/>
+			            <p:outputLabel value="Salasana"/>
+			            <p:inputText value="#{asiakasBean.salasana}"/>
+			        </p:panelGrid>
+			        <hr/>
+			        <h:commandButton value="Lisää" action="#{asiakasBean.lisaaAsiakas}">
+			            <f:ajax execute="@form" render="@form message"/>
+			        </h:commandButton>
+			    </p:panel>
+			</p:tab>
+        </p:tabView>
+    </h:form>
+</h:body>
+</html>

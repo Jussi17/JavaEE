@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Lisää asiakas</title>
+</h:head>
+<h:body>
+    <h2>Lisää asiakas</h2>
+    <h:form>
+        <p:panelGrid columns="2">
+            <p:outputLabel value="Nimi:"/>
+            <p:inputText value="#{asiakasBean.nimi}"/>
+            <p:outputLabel value="Osoite:"/>
+            <p:inputText value="#{asiakasBean.osoite}"/>
+            <p:outputLabel value="Puhelin:"/>
+            <p:inputText value="#{asiakasBean.puhelin}"/>
+            <p:outputLabel value="Email:"/>
+            <p:inputText value="#{asiakasBean.email}"/>
+            <p:outputLabel value="Salasana:"/>
+            <p:inputText value="#{asiakasBean.salasana}"/>
+            <p:commandButton value="Lisää" action="#{asiakasBean.lisaaAsiakas}" update="message @form"/>
+        </p:panelGrid>
+        <p:growl id="message" showDetail="true"/>
+        <h:outputText value="#{asiakasBean.message}"/>
+    </h:form>
+    <br/>
+    <h:link value="Asiakaslistaus" outcome="listaus"/>
+</h:body>
+</html>
