@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Asiakasrekisteri JPA</title>
+</h:head>
+<h:body>
+    <h3>Asiakasrekisteri</h3>
+    <h:form id="lomake">
+   	 <h:messages globalOnly="true" showDetail="true" showSummary="false"/>
+        <p:tabView dynamic="true">
+            <p:tab title="Asiakkaat">
+                <h:dataTable var="a" value="#{asiakasController.listAllAsiakkaat()}" border="1">
+                    <h:column>
+                        <f:facet name="header">Nimi</f:facet>
+                        <h:outputText value="#{a.nimi}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Osoite</f:facet>
+                        <h:outputText value="#{a.osoite}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Puhelin</f:facet>
+                        <h:outputText value="#{a.puhelin}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        <h:outputText value="#{a.email}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Salasana</f:facet>
+                        <h:outputText value="#{a.salasana}"/>
+                    </h:column>
+                </h:dataTable>
+            </p:tab>
+            <p:tab title="Lisää Asiakas">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Nimi:"/>
+                    <h:inputText value="#{asiakasController.asiakas.nimi}"/>
+                    <h:outputLabel value="Osoite:"/>
+                    <h:inputText value="#{asiakasController.asiakas.osoite}"/>
+                    <h:outputLabel value="Puhelin:"/>
+                    <h:inputText value="#{asiakasController.asiakas.puhelin}"/>
+                    <h:outputLabel value="Email:"/>
+                    <h:inputText value="#{asiakasController.asiakas.email}"/>
+                    <h:outputLabel value="Salasana:"/>
+                    <h:inputText value="#{asiakasController.asiakas.salasana}"/>
+                </h:panelGrid>
+                <h:commandButton value="Lisää" action="#{asiakasController.saveAsiakas}"/>
+            </p:tab>
+        </p:tabView>
+    </h:form>
+</h:body>
+</html>
