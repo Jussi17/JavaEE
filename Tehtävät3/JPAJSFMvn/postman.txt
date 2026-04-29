@@ -1,0 +1,15 @@
+GET: 
+
+ http://localhost:8080/JPAJSFMvn/api/asiakkaat
+ http://localhost:8080/JPAJSFMvn/api/asiakkaat/1
+
+POST:
+
+  {
+     "nimi": "Lasse Lähetys",
+     "osoite": "Tienkatu 16",
+     "puhelin": "0401237654",
+     "email": "lasse16@jkl.fi",
+     "salasana": "lasse16"
+   }
+

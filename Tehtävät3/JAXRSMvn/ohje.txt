@@ -1,0 +1,20 @@
+JAXRSMvn on Maven -projekti, jossa demotaan REST-Apin toteutusta JAX-RS -kirjaston avulla.
+
+Sovelluksessa on kaksi eri tiedostoa jotka tarjoavat saman apin eri muodoissa (JSON ja XML).
+Sovelluksen data tulee muistissa olevasta ArrayListista, joten kokeilua varten ei tarvitse
+viritellä tietokantaa. Aja sovellus Payara -sovelluspalvelimella. Datan voi hakea (GET) selaimeen
+seuraavista osoitteista:
+
+http://localhost:8080/JAXRSMvn/jsonapi/jsonbook
+http://localhost:8080/JAXRSMvn/xmlapi/xmlbook
+
+POST, DELETE ja PUT -metodeja täytyy käyttää esim. Postmanilla.
+
+Kun postaat dataa Postmanilla, laita data menemään Body-osastossa raw-muodossa ja tyypiksi
+JSON(application/json) tai XML(application/xml) riippuen siitä kumpaa apia käytät.
+Uuden postattavan kirjan datan voi kopioida GET-pyynnön tuloksesta.
+
+Huomaa että kaikki sovelluksen tilan (eli tietokannan) muokkauksen mahdollistavat reitit
+(POST, DELETE, PUT) pitää aina suojata ennen kuin apin voi tarjota julkisesti:
+https://antoniogoncalves.org/2016/10/03/securing-jax-rs-endpoints-with-jwt/
+

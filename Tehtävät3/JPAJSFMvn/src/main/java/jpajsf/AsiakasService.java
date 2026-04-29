@@ -16,6 +16,10 @@ public class AsiakasService {
     public void save(Asiakas asiakas) {
         this.em.persist(asiakas);
     }
+    
+    public Asiakas getAsiakasById(int id) {
+        return em.find(Asiakas.class, id);
+    }
 
     public List<Asiakas> getAllAsiakkaat() {
         @SuppressWarnings("unchecked")
