@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Widgets</title>
+</head>
+<body>
+    <h2>Widgets</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="widget : ${widgets}">
+            <td th:text="${widget.id}">ID</td>
+            <td th:text="${widget.name}">Name</td>
+            <td th:text="${widget.description}">Description</td>
+            <td><a th:href="${'/widget/' + widget.id}">View</a></td>
+            <td><a th:href="${'/widget/edit/' + widget.id}">Edit</a></td>
+            <td><a th:href="${'/widget/delete/' + widget.id}">Delete</a></td>
+        </tr>
+    </table>
+    <br/>
+    <a th:href="${'/widget/new'}">New Widget</a>
+</body>
+</html>

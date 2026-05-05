@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Widget Details</title>
+</head>
+<body>
+    <h2>Widget Details</h2>
+    <p>ID: <span th:text="${widget.id}">ID</span></p>
+    <p>Name: <span th:text="${widget.name}">Name</span></p>
+    <p>Description: <span th:text="${widget.description}">Description</span></p>
+    <br/>
+    <a th:href="${'/widget/edit/' + widget.id}">Edit</a>
+    <br/>
+    <a th:href="${'/widgets'}">Back to list</a>
+</body>
+</html>

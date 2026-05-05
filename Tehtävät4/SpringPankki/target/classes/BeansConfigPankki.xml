@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <!-- Tili1 bean - vaihda tili2:een kokeilemaan toista tiliä -->
+    <bean id="tili1" class="pankki.Tili1">
+        <property name="tilinumero" value="FI12-3456-7890"/>
+        <property name="saldo" value="1000.0"/>
+    </bean>
+
+    <bean id="tili2" class="pankki.Tili2">
+        <property name="tilinumero" value="FI98-7654-3210"/>
+        <property name="saldo" value="500.0"/>
+    </bean>
+
+    <!-- Asiakas bean - vaihda ref="tili1" -> ref="tili2" vaihtaaksesi tiliä -->
+    <bean id="asiakas" class="pankki.Asiakas">
+        <constructor-arg value="Kalle Kokeilija"/>
+        <constructor-arg ref="tili1"/>
+    </bean>
+
+    <!-- LokiPalvelu bean - injektoidaan sama tili kuin asiakkaalle -->
+    <bean id="lokipalvelu" class="pankki.LokiPalvelu">
+        <property name="tili" ref="tili1"/>
+    </bean>
+
+    <!-- AOP-konfiguraatio -->
+    <aop:config>
+        <!-- LokiPalvelusta tehdään aspekti -->
+        <aop:aspect ref="lokipalvelu">
+            <!-- pointcut lisaaRahaa-metodin suoritukseen -->
+            <aop:pointcut id="lisayspoint"
+                          expression="execution(* pankki.Asiakas.lisaaRahaa(..))"/>
+            <!-- pointcut nostaRahaa-metodin suoritukseen -->
+            <aop:pointcut id="nostopoint"
+                          expression="execution(* pankki.Asiakas.nostaRahaa(..))"/>
+            <!-- lisäyksen jälkeen suoritetaan logLisays() -->
+            <aop:after pointcut-ref="lisayspoint"
+                       method="logLisays"/>
+            <!-- noston jälkeen suoritetaan logNosto() -->
+            <aop:after pointcut-ref="nostopoint"
+                       method="logNosto"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create/Edit Widget</title>
+</head>
+<body>
+    <h2>Create / Edit Widget</h2>
+    <form th:object="${widget}" th:action="@{/widget}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{name}" placeholder="Name">
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" th:field="*{description}" placeholder="Description">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <br/>
+    <a th:href="${'/widgets'}">Back to list</a>
+</body>
+</html>
