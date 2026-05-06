@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Money</title>
+</head>
+<body>
+    <h2>Send Money</h2>
+    <form method="post" action="/sendMoney">
+        <table>
+            <tr>
+                <td>From Account:</td>
+                <td>
+                    <select name="fromAccountId">
+                        <option th:each="account : ${accounts}"
+                                th:value="${account.id}"
+                                th:text="${account.fullName + ' (' + account.balance + ')'}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>To Account:</td>
+                <td>
+                    <select name="toAccountId">
+                        <option th:each="account : ${accounts}"
+                                th:value="${account.id}"
+                                th:text="${account.fullName + ' (' + account.balance + ')'}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Amount:</td>
+                <td><input type="text" name="amount" value="100"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Send"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br/>
+    <a href="/">Back to accounts</a>
+</body>
+</html>
